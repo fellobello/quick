@@ -1,0 +1,72 @@
+-------------------------------------------------------------
+Class Diagram (Simplified UML Text Representation, Organized)
+-------------------------------------------------------------
+
+Circuit Models                                          Controllers
+-------------------------------------------------       -----------------------------------------
+QuantumState                                            CircuitEditorController
+- QuantumState()                                        - CircuitEditorController(Pane pane)
+- QuantumState(int numQubits)                           + getPane(): Pane
++ getStateVector(): ComplexNumber[]                     + setActiveTool(Tool tool): void
++ applyGate(ComplexNumber[] newState): void             + handleMousePressed(MouseEvent e): void
++ isZero(): boolean                                     + handleMouseDragged(MouseEvent e): void
++ isOne(): boolean                                      + handleMouseReleased(MouseEvent e): void
++ isSuperposition(): boolean                            + addInputState(QuantumState state, GridPoint position): void
++ toggleState(): void                                   + displayOutputState(): void
+                                                        + getWireController(): WireController
+QuantumInput (connects to Wire)                         + getInputController(): InputController
+- QuantumInput(GridPoint position,                      + getOutputController(): OutputController
+  QuantumState quantumState)
++ connectToWire(Wire wire): void                        WireController
++ getGraphic(): Graphic                                 - WireController(Pane pane)
++ getQuantumState(): QuantumState                       + addWire(Wire wire): void
++ getPosition(): GridPoint                              + removeWire(Wire wire): void
++ setQuantumState(QuantumState state): void             + getSelectedWire(): Wire
+                                                        + selectWire(Wire wire): void
+QuantumOutput (connects to Wire)                        + getWireNear(GridPoint point): Wire
+- QuantumOutput(GridPoint position)                     + updateWireDisplay(Wire wire): void
++ connectToWire(Wire wire): void
++ updateOutputState(): void                             InputController
++ getGraphic(): Graphic                                 - InputController(Pane pane)
++ getQuantumState(): QuantumState                       + addInput(GridPoint position, QuantumState state): void
++ getPosition(): GridPoint                              + connectInputToWire(QuantumInput input, Wire wire): void
+                                                        + getInputs(): List<QuantumInput>
+Wire (connects QuantumInput & QuantumOutput)
+- Wire(GridPoint start)                                 OutputController
++ addPoint(GridPoint point): void                       - OutputController(Pane pane)
++ getQuantumState(): QuantumState                       + addOutput(GridPoint position): void
++ setQuantumState(QuantumState quantumState): void      + connectOutputToWire(QuantumOutput output, Wire wire): void
++ getPoints(): List<GridPoint>                          + getOutputs(): List<QuantumOutput>
++ delete(): void                                        + displayOutput(): void
++ isNear(GridPoint point): boolean
++ isSelected(): boolean
++ setSelected(boolean selected): void
++ getGraphic(): Graphic
++ connectInput(QuantumInput input): void
++ connectOutput(QuantumOutput output): void
++ getInput(): QuantumInput
++ getOutput(): QuantumOutput
+
+-------------------------------------------------
+Tools                                                Utility
+-------------------------------------------------     -------------------------------------------
+WireTool (manipulates Wire objects)                    GridPoint
++ WireTool(CircuitEditorController editor)             + GridPoint(double x, double y)
++ onMousePressed(MouseEvent e): void                   + getX(): double
++ onMouseDragged(MouseEvent e): void                   + getY(): double
++ onMouseReleased(MouseEvent e): void                  + toPoint2D(): Point2D
++ onMouseClicked(MouseEvent e): void                   + equals(Object obj): boolean
++ deleteSelectedWire(): void                           + hashCode(): int
+                                                       + toString(): String
+InputTool (manipulates Input objects)                  + distanceTo(GridPoint other): double
++ InputTool(CircuitEditorController editor)
++ onMousePressed(MouseEvent e): void                   GridUtils
++ onMouseDragged(MouseEvent e): void                   + snapToGrid(double value): double
++ onMouseReleased(MouseEvent e): void                  + snapToGrid(double x, double y): GridPoint
+
+OutputTool (manipulates Output objects)                Main
++ OutputTool(CircuitEditorController editor)           + start(Stage primaryStage): void
++ onMousePressed(MouseEvent e): void                   + main(String[] args): void
++ onMouseDragged(MouseEvent e): void
++ onMouseReleased(MouseEvent e): void
+-------------------------------------------------

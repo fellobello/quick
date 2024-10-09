@@ -3,19 +3,26 @@ package controllers;
 import javafx.scene.layout.Pane;
 import javafx.scene.input.MouseEvent;
 import tools.*;
-import controllers.WireController;
+import utils.QuantumState;
+import utils.GridPoint;
+import circuit.Wire;
 
 public class CircuitEditorController {
-    private final Pane pane;              // Pane for drawing elements
-    private Tool activeTool;               // Current active tool for drawing/manipulation
-    private final WireController wireController;  // Manages wires in the pane
+    private final Pane pane;
+    private final WireController wireController;
+    private final InputController inputController;
+    private final OutputController outputController;
+    private Tool activeTool;
 
-    public CircuitEditorController() {
-        pane = new Pane();
+    public CircuitEditorController(Pane pane) {
+        this.pane = pane;
+        pane.setStyle("-fx-background-color: #241d31;");
+
         wireController = new WireController(pane);
+        inputController = new InputController(pane);
+        outputController = new OutputController(pane);
+        activeTool = new WireTool(this);
 
-        activeTool = new WireTool(this); //WireTool test init
-        // Set up mouse event handlers
         pane.setOnMousePressed(this::handleMousePressed);
         pane.setOnMouseDragged(this::handleMouseDragged);
         pane.setOnMouseReleased(this::handleMouseReleased);
@@ -29,7 +36,6 @@ public class CircuitEditorController {
         activeTool = tool;
     }
 
-    // Handle mouse events
     private void handleMousePressed(MouseEvent e) {
         if (activeTool != null) {
             activeTool.onMousePressed(e);
@@ -48,15 +54,23 @@ public class CircuitEditorController {
         }
     }
 
-    public void addElement(Object element) {
-        // Implementation for adding graphical elements to the pane
-        // Depending on the design of circuit elements
+    public void addInputState(QuantumState state, GridPoint position) {
+        inputController.addInput(position, state);  // Add an input with its quantum state
     }
 
-    public WireController getWireManager() {
-        return wireController;             // Accessor for wire manager
+    public void displayOutputState() {
+        outputController.displayOutput();  // Display output state on the pane
+    }
+
+    public WireController getWireController() {
+        return wireController;
+    }
+
+    public InputController getInputController() {
+        return inputController;
+    }
+
+    public OutputController getOutputController() {
+        return outputController;
     }
 }
-
-
-

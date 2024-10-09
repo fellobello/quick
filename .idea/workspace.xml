@@ -4,33 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/CircuitElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/Gate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/Qubit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tools/GateTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tools/SelectionTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tools/Tool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/ComplexNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/GridPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/GridUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/QuantumState.java" afterDir="false" />
+    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="working template to expand on">
+      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumOutput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/InputController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/OutputController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tools/InputTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tools/OutputTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UMLS.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UMLS_CHANGES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/GridPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/GridUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/QuantumState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/QuantumState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +58,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Gradle.Build Quick.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Quick [:controllers.Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Quick [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Quick [:controllers.Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -81,7 +72,13 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTThemeSelectorConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;PLAIN_TEXT&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -118,11 +115,55 @@
       <option name="presentableId" value="Default" />
       <updated>1727128475298</updated>
       <workItem from="1727128476342" duration="1042000" />
-      <workItem from="1727136380246" duration="11623000" />
+      <workItem from="1727136380246" duration="11715000" />
+      <workItem from="1727154356363" duration="1143000" />
+      <workItem from="1727155648873" duration="223000" />
+      <workItem from="1727155879551" duration="139000" />
+      <workItem from="1727156025712" duration="542000" />
+      <workItem from="1727156577752" duration="6449000" />
+      <workItem from="1727315916429" duration="12000" />
+      <workItem from="1727316198028" duration="734000" />
+      <workItem from="1728338873977" duration="8448000" />
+      <workItem from="1728437223955" duration="1472000" />
     </task>
+    <task id="LOCAL-00001" summary="working template to expand on">
+      <option name="closed" value="true" />
+      <created>1727151759067</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727151759067</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="working template to expand on" />
+    <option name="LAST_COMMIT_MESSAGE" value="working template to expand on" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/circuit/Wire.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/circuit/Wire.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="((Wire)((WireTool)editorController.activeTool).currentWire).points" custom="circuit.Wire,tools.WireTool" />
+        <watch expression="updatedGraphic" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

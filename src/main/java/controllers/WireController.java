@@ -2,14 +2,15 @@ package controllers;
 
 import circuit.Wire;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
 import utils.GridPoint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WireController {
-    private final List<Wire> wires = new ArrayList<>();  // List of wires managed by this controller
-    private final Pane pane;                              // Pane to display wires
+    private final List<Wire> wires = new ArrayList<>();
+    private final Pane pane;
 
     public WireController(Pane pane) {
         this.pane = pane;                                 // Initialize the pane reference
@@ -17,7 +18,10 @@ public class WireController {
 
     public void addWire(Wire wire) {
         wires.add(wire);
-        pane.getChildren().add(wire.getGraphic());       // Add the wire's graphic to the pane
+        Line graphic = wire.getGraphic();
+        if (graphic != null) {
+            pane.getChildren().add(graphic); // Add the wire's graphic to the pane if it has enough points
+        }
     }
 
     public void removeWire(Wire wire) {
@@ -39,10 +43,10 @@ public class WireController {
     }
 
     public void updateWireDisplay(Wire wire) {
-        // Remove existing graphical representation
-        pane.getChildren().remove(wire.getGraphic());
-        // Re-add the updated graphical representation
-        pane.getChildren().add(wire.getGraphic());
+        Line segment;
+        while ((segment = wire.getGraphic()) != null) {
+            pane.getChildren().add(segment); // Add the new segment to the pane
+        }
     }
 }
 

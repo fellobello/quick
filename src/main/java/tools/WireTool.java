@@ -1,14 +1,13 @@
 package tools;
 
 import controllers.CircuitEditorController;
-import controllers.WireController;
 import javafx.scene.input.MouseEvent;
 import circuit.Wire;
 import utils.GridPoint;
 import utils.GridUtils;
 
 public class WireTool implements Tool {
-    private boolean drawingWire = false;  // Track if we're currently drawing a wire
+    private boolean drawingWire = false;
     private Wire currentWire;
     private final CircuitEditorController editorController;
 
@@ -16,47 +15,51 @@ public class WireTool implements Tool {
         this.editorController = editorController;
     }
 
-    // Called when mouse is pressed down (start drawing a wire)
+    // called when mouse is pressed down (start drawing a wire)
     public void onMousePressed(MouseEvent e) {
-        GridPoint startPoint = GridUtils.snapToGrid(e.getX(), e.getY());  // Snap mouse position to grid
-        currentWire = new Wire(startPoint, startPoint);
+        GridPoint startPoint = GridUtils.snapToGrid(e.getX(), e.getY()); // Snap mouse position to grid
+        currentWire = new Wire(startPoint);
         drawingWire = true;
-        editorController.getWireManager().addWire(currentWire);
+        editorController.getWireController().addWire(currentWire); // Initially add the wire to the controller
     }
 
-    // Called when mouse is dragged (update the wire as the user drags the mouse)
+    // called when mouse is dragged (update the wire as the user drags the mouse)
     public void onMouseDragged(MouseEvent e) {
         if (drawingWire) {
             GridPoint nextPoint = GridUtils.snapToGrid(e.getX(), e.getY());
-            currentWire.addPoint(nextPoint);
-            editorController.getWireManager().updateWireDisplay(currentWire);  // Visually update the wire in the editor
+            currentWire.addPoint(nextPoint); // Add the next point to the wire
+
+            // Check if we have at least two points
+            if (currentWire.getPoints().size() >= 2) {
+                editorController.getWireController().updateWireDisplay(currentWire); // Update the graphic display
+            }
         }
     }
 
-    // Called when mouse is released (finish drawing the wire)
+    // called when mouse is released (finish drawing the wire)
     public void onMouseReleased(MouseEvent e) {
         if (drawingWire) {
-            drawingWire = false;
-            // Ensure the wire ends at a grid point
             GridPoint endPoint = GridUtils.snapToGrid(e.getX(), e.getY());
-            currentWire.addPoint(endPoint);
+            currentWire.addPoint(endPoint); // Add the end point to the wire
+            drawingWire = false; // Stop drawing
+            editorController.getWireController().updateWireDisplay(currentWire); // Final update on release
         }
     }
 
-    // Handle selection of a wire (if user clicks near a wire)
+    // handle selection of a wire (if user clicks near a wire)
     public void onMouseClicked(MouseEvent e) {
         GridPoint clickPoint = GridUtils.snapToGrid(e.getX(), e.getY());
-        Wire selectedWire = editorController.getWireManager().getWireNear(clickPoint);
+        Wire selectedWire = editorController.getWireController().getWireNear(clickPoint);
         if (selectedWire != null) {
-            editorController.getWireManager().selectWire(selectedWire);
+            editorController.getWireController().selectWire(selectedWire);
         }
     }
 
-    // Delete the currently selected wire
+    // delete the currently selected wire
     public void deleteSelectedWire() {
-        Wire selectedWire = editorController.getWireManager().getSelectedWire();
+        Wire selectedWire = editorController.getWireController().getSelectedWire();
         if (selectedWire != null) {
-            editorController.getWireManager().removeWire(selectedWire);
+            editorController.getWireController().removeWire(selectedWire);
         }
     }
 }

@@ -3,7 +3,7 @@ package utils;
 import javafx.geometry.Point2D;
 
 public class GridUtils {
-    private static final int GRID_SIZE = 20;
+    private static final int GRID_SIZE = 40;
 
     public static double snapToGrid(double value) {
         return Math.round(value / GRID_SIZE) * GRID_SIZE;

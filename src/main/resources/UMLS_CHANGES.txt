@@ -1,0 +1,106 @@
+-------------------------------------------------------------
+Class Diagram (Simplified UML Text Representation, Organized)
+(With new GridManager class and changes in related methods)
+-------------------------------------------------------------
+
+Circuit Models                                          Controllers (Updated Methods)
+-------------------------------------------------       -----------------------------------------
+QuantumState                                            CircuitEditorController
++ QuantumState()                                        + CircuitEditorController(Pane pane)
++ QuantumState(int numQubits)                           + getPane(): Pane
++ getStateVector(): ComplexNumber[]                     + setActiveTool(Tool tool): void
++ applyGate(ComplexNumber[] newState): void             + handleMousePressed(MouseEvent e): void
++ isZero(): boolean                                     + handleMouseDragged(MouseEvent e): void
++ isOne(): boolean                                      + handleMouseReleased(MouseEvent e): void
++ isSuperposition(): boolean                            + addInputState(QuantumState state, GridPoint position): void [updated]
++ toggleState(): void                                   + displayOutputState(): void
+                                                        + getWireController(): WireController
+QuantumInput (connects to Wire)                         + getInputController(): InputController
++ QuantumInput(GridPoint position,                      + getOutputController(): OutputController
+  QuantumState quantumState)                             - GridManager gridManager [new]
++ connectToWire(Wire wire): void
++ getGraphic(): Graphic                                 WireController
++ getQuantumState(): QuantumState                       + WireController(Pane pane)
++ getPosition(): GridPoint                              + addWire(Wire wire): void [updated]
++ setQuantumState(QuantumState state): void             + removeWire(Wire wire): void
+                                                        + getSelectedWire(): Wire
+QuantumOutput (connects to Wire)                        + selectWire(Wire wire): void
++ QuantumOutput(GridPoint position)                     + getWireNear(GridPoint point): Wire
++ connectToWire(Wire wire): void                        + updateWireDisplay(Wire wire): void
++ updateOutputState(): void
++ getGraphic(): Graphic                                 InputController
++ getQuantumState(): QuantumState                       + InputController(Pane pane)
++ getPosition(): GridPoint                              + addInput(GridPoint position, QuantumState state): void [updated]
+                                                        + connectInputToWire(QuantumInput input, Wire wire): void
+
+Wire (connects QuantumInput & QuantumOutput)            OutputController
++ Wire(GridPoint start)                                 + OutputController(Pane pane)
++ addPoint(GridPoint point): void                       + addOutput(GridPoint position): void [updated]
++ getQuantumState(): QuantumState                       + connectOutputToWire(QuantumOutput output, Wire wire): void
++ setQuantumState(QuantumState quantumState): void      + getOutputs(): List<QuantumOutput>
++ getPoints(): List<GridPoint>                          + displayOutput(): void
++ delete(): void
++ isNear(GridPoint point): boolean
++ isSelected(): boolean
++ setSelected(boolean selected): void
+
+-------------------------------------------------
+Tools                                                Utility (Updated Methods)
+-------------------------------------------------     -------------------------------------------
+WireTool                                              GridPoint
++ WireTool(CircuitEditorController editor)            + GridPoint(double x, double y)
++ onMousePressed(MouseEvent e): void                  + getX(): double
++ onMouseDragged(MouseEvent e): void                  + getY(): double
++ onMouseReleased(MouseEvent e): void                 + toPoint2D(): Point2D
++ onMouseClicked(MouseEvent e): void                  + equals(Object obj): boolean
++ deleteSelectedWire(): void                          + hashCode(): int
+                                                      + toString(): String
+InputTool                                             + distanceTo(GridPoint other): double
++ InputTool(CircuitEditorController editor)
++ onMousePressed(MouseEvent e): void                  GridUtils
++ onMouseDragged(MouseEvent e): void                  + snapToGrid(double value): double
++ onMouseReleased(MouseEvent e): void                 + snapToGrid(double x, double y): GridPoint
+
+OutputTool                                            GridManager (New)
++ OutputTool(CircuitEditorController editor)          + GridManager(int width, int height)
++ onMousePressed(MouseEvent e): void                  + placeComponent(GridPoint position, String code): boolean
++ onMouseDragged(MouseEvent e): void                  + removeComponent(GridPoint position): void
++ onMouseReleased(MouseEvent e): void                 + isOccupied(GridPoint position): boolean
+                                                      + getComponentAt(GridPoint position): String
+Main                                                  + getGrid(): String[][]
++ start(Stage primaryStage): void                     + canPlaceComponent(GridPoint position): boolean
++ main(String[] args): void                           + snapToGrid(GridPoint position): GridPoint
+-------------------------------------------------
+
+Changes to Existing Classes
+
+    CircuitEditorController
+        Method changes:
+            addInputState, addOutputState, and wire-related methods will now interact with GridManager to check if the grid position is available and ensure no overlaps.
+            Simplified logic for placement validation, as we can query GridManager for availability before placing any component.
+        New interaction:
+            On initializing the controller, a GridManager instance will be created and updated as components are added or removed from the grid.
+
+    InputController & OutputController
+        Method changes:
+            Methods like addInput, addOutput will first check with GridManager before adding components to the pane. If the grid position is occupied, the method will reject the action.
+        New logic:
+            Before connecting components like QuantumInput or QuantumOutput to wires, they must be successfully placed in the grid using GridManager.
+
+    WireController
+        Method changes:
+            addWire and wire modification methods will be updated to ensure that wires can't be placed over other components. This will be checked using GridManager.
+        New logic:
+            Wires will also follow the same grid logic, ensuring they are snapped to valid positions.
+
+    GridUtils
+        Method additions:
+            The existing grid snapping methods will be leveraged, potentially extended to support 2D array coordinate validation alongside the GridManager.
+        No major changes, but might need to coordinate with GridManager.
+
+Simplified Interaction Flow:
+
+    When a user tries to place a component:
+        The system checks with GridManager if the target grid position is available.
+        If available, the component is placed, and the grid is updated with the component's code.
+        If not, the system blocks the action and displays an error.

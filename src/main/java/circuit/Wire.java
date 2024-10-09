@@ -1,39 +1,52 @@
 package circuit;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import javafx.scene.shape.Line;
 import utils.GridPoint;
 import utils.QuantumState;
+import javafx.scene.paint.Color;
 
 public class Wire {
-    private final List<GridPoint> points;      // List of points that define the wire
+    public List<GridPoint> points;             // List of points that define the wire
     private QuantumState quantumState;          // State of the wire
     private boolean selected;                    // Selection state of the wire
+    private int currentSegmentIndex;            // Current segment index for graphical representation
+    private QuantumInput input;                  // Reference to the connected input
+    private QuantumOutput output;                // Reference to the connected output
 
-    public Wire(GridPoint start, GridPoint end) {
+    public Wire(GridPoint start) {
         points = new ArrayList<>();
         points.add(start);
-        points.add(end);
-        quantumState = new QuantumState();     // Initialize the quantum state
-        this.selected = false;                  // Default selection state
+        quantumState = new QuantumState();       // Initialize the quantum state
+        this.selected = false;
+        this.currentSegmentIndex = 0;
     }
 
     public void addPoint(GridPoint point) {
-        points.add(point);                     // Add a new point to the wire
+        if (!points.contains(point)) {
+            points.add(point);                    // Add new point to the wire
+        }
     }
 
     public QuantumState getQuantumState() {
-        return quantumState;                   // Accessor for quantum state
+        return quantumState;                      // Get the current quantum state
+    }
+
+    public void setQuantumState(QuantumState quantumState) {
+        this.quantumState = quantumState;
+        if (output != null) {
+            output.updateOutputState();
+        }
     }
 
     public List<GridPoint> getPoints() {
-        return points;                         // Accessor for the points
+        return points;
     }
 
     public void delete() {
-        points.clear();                        // Clear all points in the wire
-        quantumState = null;                   // Reset quantum state
+        points.clear();
+        quantumState = null;
     }
 
     public boolean isNear(GridPoint point) {
@@ -41,40 +54,49 @@ public class Wire {
     }
 
     public boolean isSelected() {
-        return selected;                       // Accessor for selection state
+        return selected;                          // Accessor for selection state
     }
 
     public void setSelected(boolean selected) {
-        this.selected = selected;              // Set selection state
+        this.selected = selected;                 // Set selection state
     }
 
     public Line getGraphic() {
-        Line line = new Line();
-        if (!points.isEmpty()) {
-            GridPoint startPoint = points.get(0);
-            line.setStartX(startPoint.getX());
-            line.setStartY(startPoint.getY());
+        if (points.size() < 2 || currentSegmentIndex >= points.size() - 1) {
+            return null;                          // Not enough points or all segments have been returned
         }
 
-        for (int i = 0; i < points.size() - 1; i++) {
-            GridPoint currentPoint = points.get(i);
-            GridPoint nextPoint = points.get(i + 1);
-            Line segment = new Line(currentPoint.getX(), currentPoint.getY(), nextPoint.getX(), nextPoint.getY());
+        GridPoint startPoint = points.get(currentSegmentIndex);
+        GridPoint endPoint = points.get(currentSegmentIndex + 1);
 
-            if (selected) {
-                segment.setStrokeWidth(3); // Thicker line for selected wire
-                segment.setStroke(javafx.scene.paint.Color.RED); // Change color to red
-            } else {
-                segment.setStrokeWidth(1); // Normal line width
-                segment.setStroke(javafx.scene.paint.Color.BLACK); // Default color
-            }
+        Line segment = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+        segment.setStroke(Color.WHITE);
+        segment.getStrokeDashArray().addAll(5d, 5d); // Dashed line style
+        currentSegmentIndex++;                       // Move to the next segment index
 
-            // Add segment to line (you could also create a group for multiple segments if desired)
-            line.getStrokeDashArray().addAll(5d, 5d); // Example of dashed line for display
-        }
+        return segment;                             // Return the created line segment
+    }
 
-        return line;
+    // Connect input to this wire
+    public void connectInput(QuantumInput input) {
+        this.input = input;                        // Connect the input to the wire
+        setQuantumState(input.getQuantumState()); // Set initial state from input
+    }
+
+    // Connect output to this wire
+    public void connectOutput(QuantumOutput output) {
+        this.output = output;                      // Connect the output to the wire
+        output.connectToWire(this);                // Establish the connection
+        output.updateOutputState();                 // Update the output state based on the wire
+    }
+
+    // Get connected input
+    public QuantumInput getInput() {
+        return input;                              // Get the connected input
+    }
+
+    // Get connected output
+    public QuantumOutput getOutput() {
+        return output;                             // Get the connected output
     }
 }
-
-
