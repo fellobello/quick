@@ -68,8 +68,8 @@ OutputTool                                            GridManager (New)
 + onMouseReleased(MouseEvent e): void                 + isOccupied(GridPoint position): boolean
                                                       + getComponentAt(GridPoint position): String
 Main                                                  + getGrid(): String[][]
-+ start(Stage primaryStage): void                     + canPlaceComponent(GridPoint position): boolean
-+ main(String[] args): void                           + snapToGrid(GridPoint position): GridPoint
++ start(Stage primaryStage): void
++ main(String[] args): void
 -------------------------------------------------
 
 Changes to Existing Classes
