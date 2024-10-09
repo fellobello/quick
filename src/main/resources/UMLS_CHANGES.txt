@@ -72,35 +72,6 @@ Main                                                  + getGrid(): String[][]
 + main(String[] args): void
 -------------------------------------------------
 
-Changes to Existing Classes
-
-    CircuitEditorController
-        Method changes:
-            addInputState, addOutputState, and wire-related methods will now interact with GridManager to check if the grid position is available and ensure no overlaps.
-            Simplified logic for placement validation, as we can query GridManager for availability before placing any component.
-        New interaction:
-            On initializing the controller, a GridManager instance will be created and updated as components are added or removed from the grid.
-
-    InputController & OutputController
-        Method changes:
-            Methods like addInput, addOutput will first check with GridManager before adding components to the pane. If the grid position is occupied, the method will reject the action.
-        New logic:
-            Before connecting components like QuantumInput or QuantumOutput to wires, they must be successfully placed in the grid using GridManager.
-
-    WireController
-        Method changes:
-            addWire and wire modification methods will be updated to ensure that wires can't be placed over other components. This will be checked using GridManager.
-        New logic:
-            Wires will also follow the same grid logic, ensuring they are snapped to valid positions.
-
-    GridUtils
-        Method additions:
-            The existing grid snapping methods will be leveraged, potentially extended to support 2D array coordinate validation alongside the GridManager.
-        No major changes, but might need to coordinate with GridManager.
-
-Simplified Interaction Flow:
-
-    When a user tries to place a component:
-        The system checks with GridManager if the target grid position is available.
-        If available, the component is placed, and the grid is updated with the component's code.
-        If not, the system blocks the action and displays an error.
+TODO:
+Clean Up Wire Classes from top down.
+Normalize grid point references and make our gridmanager array more efficient with this

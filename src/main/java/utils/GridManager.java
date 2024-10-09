@@ -1,42 +1,39 @@
 package utils;
-import tools.*;
+import circuit.*;
 
 public class GridManager {
     private static final int GRID_SIZE = 40;
-    public int width = 0;
-    public int height = 0;
-    public Tool[][] grid = new Tool[width][height];
+    public static int width = 0;
+    public static int height = 0;
+    public static int[][] grid = new int[width][height];
 
-    GridManager(int width, int height) {
+    public GridManager(int width, int height) {
         this.width = width;
         this.height = height;
-        this.grid = new Tool[width][height];
+        this.grid = new int[width][height];
     }
 
-    public boolean placeComponent(GridPoint pos, Tool tool) {
-        if(isOccupied(pos)) { return false; }
-        grid[(int) pos.x()][(int) pos.y()] = tool;
-
-        return true;
+    public static void placeComp(GridPoint pos, int code) {
+        if(isFree(pos)) grid[(int) pos.x()][(int) pos.y()] = code;
     }
 
-    public void removeComponent(GridPoint pos) {
-        if(!isOccupied(pos)) { return; }
+    public void removeComp(GridPoint pos) {
+        if(isFree(pos)) { return; }
 
-        grid[(int) pos.x()][(int) pos.y()] = null;
+        grid[(int) pos.x()][(int) pos.y()] = 0;
     }
 
-    public boolean isOccupied(GridPoint pos) {
-        return grid[(int) pos.x()][(int) pos.y()] != null;
+    private static boolean isFree(GridPoint pos) {
+        return grid[(int) pos.x()][(int) pos.y()] == 0;
     }
 
-    public Tool getComp(GridPoint pos) {
-        if(!isOccupied(pos)) { return null; }
+    public int getComp(GridPoint pos) {
+        if(isFree(pos)) { return 0; }
 
         return grid[(int) pos.x()][(int) pos.y()];
     }
 
-    public Tool[][] getGrid() {
+    public int[][] getGrid() {
         return grid;
     }
 

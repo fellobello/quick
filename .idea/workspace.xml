@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="added GridManager class">
+    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="consolidated GridUtils into GridManager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/QuantumInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/QuantumOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tools/InputTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/InputTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tools/OutputTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/OutputTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/InputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OutputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OutputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/GridManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UMLS_CHANGES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UMLS_CHANGES.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +135,7 @@
       <workItem from="1727316198028" duration="734000" />
       <workItem from="1728338873977" duration="8448000" />
       <workItem from="1728437223955" duration="1472000" />
-      <workItem from="1728446184482" duration="2361000" />
+      <workItem from="1728446184482" duration="5143000" />
     </task>
     <task id="LOCAL-00001" summary="working template to expand on">
       <option name="closed" value="true" />
@@ -163,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728447701232</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="consolidated GridUtils into GridManager">
+      <option name="closed" value="true" />
+      <created>1728448698862</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728448698862</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +190,8 @@
     <MESSAGE value="working template to expand on" />
     <MESSAGE value="added io" />
     <MESSAGE value="added GridManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added GridManager class" />
+    <MESSAGE value="consolidated GridUtils into GridManager" />
+    <option name="LAST_COMMIT_MESSAGE" value="consolidated GridUtils into GridManager" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
