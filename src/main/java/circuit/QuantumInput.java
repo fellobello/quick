@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import utils.GridPoint;
 import utils.QuantumState;
-import circuit.Wire;
 
 public class QuantumInput {
     private QuantumState quantumState;
@@ -15,7 +14,7 @@ public class QuantumInput {
     public QuantumInput(GridPoint position, QuantumState quantumState) {
         this.position = position;
         this.quantumState = quantumState;
-        this.graphic = new Circle(position.getX(), position.getY(), 10, Color.GREEN); // Visual element
+        this.graphic = new Circle(position.x(), position.y(), 10, Color.GREEN); // Visual element
         this.connectedWire = null;
     }
 

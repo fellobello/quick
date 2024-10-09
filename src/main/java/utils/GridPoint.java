@@ -2,22 +2,7 @@ package utils;
 
 import javafx.geometry.Point2D;
 
-public class GridPoint {
-    private final double x;
-    private final double y;
-
-    public GridPoint(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
+public record GridPoint(double x, double y) {
 
     public Point2D toPoint2D() {
         return new Point2D(x, y);

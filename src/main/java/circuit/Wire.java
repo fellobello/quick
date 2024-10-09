@@ -69,7 +69,7 @@ public class Wire {
         GridPoint startPoint = points.get(currentSegmentIndex);
         GridPoint endPoint = points.get(currentSegmentIndex + 1);
 
-        Line segment = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+        Line segment = new Line(startPoint.x(), startPoint.y(), endPoint.x(), endPoint.y());
         segment.setStroke(Color.WHITE);
         segment.getStrokeDashArray().addAll(5d, 5d); // Dashed line style
         currentSegmentIndex++;                       // Move to the next segment index

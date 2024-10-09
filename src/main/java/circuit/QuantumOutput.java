@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import utils.QuantumState;
 import utils.GridPoint;
-import circuit.Wire;
 
 public class QuantumOutput {
     private QuantumState quantumState;
@@ -14,7 +13,7 @@ public class QuantumOutput {
 
     public QuantumOutput(GridPoint position) {
         this.position = position;
-        this.graphic = new Rectangle(position.getX() - 10, position.getY() - 10, 20, 20);
+        this.graphic = new Rectangle(position.x() - 10, position.y() - 10, 20, 20);
         this.graphic.setFill(Color.GREY); // Default to grey when no state
         this.connectedWire = null;
     }

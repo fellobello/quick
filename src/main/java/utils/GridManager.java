@@ -2,6 +2,7 @@ package utils;
 import tools.*;
 
 public class GridManager {
+    private static final int GRID_SIZE = 40;
     public int width = 0;
     public int height = 0;
     public Tool[][] grid = new Tool[width][height];
@@ -14,7 +15,7 @@ public class GridManager {
 
     public boolean placeComponent(GridPoint pos, Tool tool) {
         if(isOccupied(pos)) { return false; }
-        grid[(int) pos.getX()][(int) pos.getY()] = tool;
+        grid[(int) pos.x()][(int) pos.y()] = tool;
 
         return true;
     }
@@ -22,20 +23,30 @@ public class GridManager {
     public void removeComponent(GridPoint pos) {
         if(!isOccupied(pos)) { return; }
 
-        grid[(int) pos.getX()][(int) pos.getY()] = null;
+        grid[(int) pos.x()][(int) pos.y()] = null;
     }
 
     public boolean isOccupied(GridPoint pos) {
-        return grid[(int) pos.getX()][(int) pos.getY()] != null;
+        return grid[(int) pos.x()][(int) pos.y()] != null;
     }
 
     public Tool getComp(GridPoint pos) {
         if(!isOccupied(pos)) { return null; }
 
-        return grid[(int) pos.getX()][(int) pos.getY()];
+        return grid[(int) pos.x()][(int) pos.y()];
     }
 
     public Tool[][] getGrid() {
         return grid;
+    }
+
+    public static double snapToGrid(double value) {
+        return Math.round(value / GRID_SIZE) * GRID_SIZE;
+    }
+
+    public static GridPoint snapToGrid(double x, double y) {
+        double snappedX = snapToGrid(x);
+        double snappedY = snapToGrid(y);
+        return new GridPoint(snappedX, snappedY);
     }
 }
