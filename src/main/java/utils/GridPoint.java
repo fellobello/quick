@@ -1,11 +1,32 @@
 package utils;
 
-import javafx.geometry.Point2D;
+public class GridPoint {
+    private final int xInd;
+    private final int yInd;
 
-public record GridPoint(double x, double y) {
+    public GridPoint(int xInd, int yInd) {
+        this.xInd = xInd;
+        this.yInd = yInd;
+    }
 
-    public Point2D toPoint2D() {
-        return new Point2D(x, y);
+    static GridPoint createGridPoint(int xInd, int yInd) {
+        return new GridPoint(xInd, yInd);
+    }
+
+    public int getXIndex() {
+        return xInd;
+    }
+
+    public int getYIndex() {
+        return yInd;
+    }
+
+    public double getX() {
+        return xInd * GridManager.GRID_SIZE;
+    }
+
+    public double getY() {
+        return yInd * GridManager.GRID_SIZE;
     }
 
     @Override
@@ -13,22 +34,18 @@ public record GridPoint(double x, double y) {
         if (this == obj) return true;
         if (!(obj instanceof GridPoint)) return false;
         GridPoint other = (GridPoint) obj;
-        return Double.compare(this.x, other.x) == 0 && Double.compare(this.y, other.y) == 0;
+        return this.xInd == other.xInd && this.yInd == other.yInd;
     }
 
     @Override
     public int hashCode() {
-        int result = Double.hashCode(x);
-        result = 31 * result + Double.hashCode(y);
+        int result = Integer.hashCode(xInd);
+        result = 31 * result + Integer.hashCode(yInd);
         return result;
     }
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ")";
-    }
-
-    public double distanceTo(GridPoint other) {
-        return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
+        return "GridPoint: (" + xInd + ", " + yInd + ")";
     }
 }

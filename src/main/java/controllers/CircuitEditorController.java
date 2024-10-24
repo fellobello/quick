@@ -33,7 +33,7 @@ public class CircuitEditorController {
         int gridHeight = PANE_HEIGHT / GRID_POINT_DISTANCE;
 
         // Initialize the GridManager with the calculated grid dimensions
-        this.gridManager = new GridManager(gridWidth, gridHeight);
+        this.gridManager = new GridManager();
 
         wireController = new WireController(pane, gridManager);
         inputController = new InputController(pane, gridManager);

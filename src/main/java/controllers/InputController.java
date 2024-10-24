@@ -17,11 +17,7 @@ public class InputController {
 
     public void addInput(GridPoint pos, QuantumState state) {
         QuantumInput input = new QuantumInput(pos, state);
-        GridManager.placeComp(pos, 0);
+        GridManager.placeComp(pos, 1);
         pane.getChildren().add(input.getGraphic());
-    }
-
-    public void connectInputToWire(QuantumInput input, Wire wire) {
-        input.connectToWire(wire);
     }
 }

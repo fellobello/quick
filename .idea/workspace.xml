@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="consolidated GridUtils into GridManager">
+    <list default="true" id="be1e5c90-cf0d-488c-8cdc-4fbbb3e2575c" name="Changes" comment="implemented gridmanager use with controller classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/QuantumInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/QuantumOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/QuantumOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/circuit/Wire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CircuitEditorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/InputController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/OutputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/OutputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/WireController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/InputTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/InputTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/WireTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/GridManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/UMLS_CHANGES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UMLS_CHANGES.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/GridPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/GridPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/UMLS.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/UMLS.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,18 +44,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "fellobello"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fellobello&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/fellobello/quick",
-    "accountId": "dea045a9-1df0-481a-886d-feb2b40ca34d"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fellobello/quick&quot;,
+    &quot;accountId&quot;: &quot;dea045a9-1df0-481a-886d-feb2b40ca34d&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -69,7 +74,7 @@
   "keyToString": {
     "Gradle.Build Quick.executor": "Run",
     "Gradle.Quick [:Main.main()].executor": "Run",
-    "Gradle.Quick [:controllers.Main.main()].executor": "Run",
+    "Gradle.Quick [:controllers.Main.main()].executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "add-gridmanager",
@@ -135,7 +140,16 @@
       <workItem from="1727316198028" duration="734000" />
       <workItem from="1728338873977" duration="8448000" />
       <workItem from="1728437223955" duration="1472000" />
-      <workItem from="1728446184482" duration="5143000" />
+      <workItem from="1728446184482" duration="5239000" />
+      <workItem from="1728519420025" duration="3041000" />
+      <workItem from="1728531976145" duration="4141000" />
+      <workItem from="1728589013916" duration="948000" />
+      <workItem from="1728709239938" duration="40000" />
+      <workItem from="1728716030544" duration="138000" />
+      <workItem from="1729048940350" duration="737000" />
+      <workItem from="1729057443581" duration="306000" />
+      <workItem from="1729656407164" duration="1217000" />
+      <workItem from="1729811257859" duration="2819000" />
     </task>
     <task id="LOCAL-00001" summary="working template to expand on">
       <option name="closed" value="true" />
@@ -169,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728448698862</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implemented gridmanager use with controller classes">
+      <option name="closed" value="true" />
+      <created>1728451473878</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728451473878</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,28 +213,10 @@
     <MESSAGE value="added io" />
     <MESSAGE value="added GridManager class" />
     <MESSAGE value="consolidated GridUtils into GridManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="consolidated GridUtils into GridManager" />
+    <MESSAGE value="implemented gridmanager use with controller classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented gridmanager use with controller classes" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/circuit/Wire.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/circuit/Wire.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/tools/WireTool.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="((Wire)((WireTool)editorController.activeTool).currentWire).points" custom="circuit.Wire,tools.WireTool" />

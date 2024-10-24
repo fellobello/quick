@@ -8,19 +8,12 @@ import utils.QuantumState;
 public class QuantumInput {
     private QuantumState quantumState;
     private Circle graphic;
-    private GridPoint position;
-    private Wire connectedWire;
+    private GridPoint pos;
 
-    public QuantumInput(GridPoint position, QuantumState quantumState) {
-        this.position = position;
+    public QuantumInput(GridPoint pos, QuantumState quantumState) {
+        this.pos = pos;
         this.quantumState = quantumState;
-        this.graphic = new Circle(position.x(), position.y(), 10, Color.GREEN); // Visual element
-        this.connectedWire = null;
-    }
-
-    public void connectToWire(Wire wire) {
-        this.connectedWire = wire;
-        wire.setQuantumState(quantumState);  // Pass quantum state to the wire
+        this.graphic = new Circle(pos.getX(), pos.getY(), 10, Color.GREEN);
     }
 
     public Circle getGraphic() {
@@ -31,14 +24,11 @@ public class QuantumInput {
         return quantumState;
     }
 
-    public GridPoint getPosition() {
-        return position;
+    public GridPoint getPos() {
+        return pos;
     }
 
     public void setQuantumState(QuantumState state) {
         this.quantumState = state;
-        if (connectedWire != null) {
-            connectedWire.setQuantumState(state);  // Update wire state
-        }
     }
 }

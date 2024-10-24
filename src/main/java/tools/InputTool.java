@@ -5,6 +5,8 @@ import controllers.CircuitEditorController;
 import javafx.scene.input.MouseEvent;
 import utils.*;
 
+import static utils.GridManager.*;
+
 public class InputTool implements Tool {
     private final CircuitEditorController editor;
 

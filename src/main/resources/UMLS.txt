@@ -34,8 +34,7 @@ QuantumOutput (connects to Wire)                        + getWireNear(GridPoint 
 Wire (connects QuantumInput & QuantumOutput)
 - Wire(GridPoint start)                                 OutputController
 + addPoint(GridPoint point): void                       - OutputController(Pane pane)
-+ getQuantumState(): QuantumState                       + addOutput(GridPoint position): void
-+ setQuantumState(QuantumState quantumState): void      + connectOutputToWire(QuantumOutput output, Wire wire): void
++ connectOutputToWire(QuantumOutput output, Wire wire): void
 + getPoints(): List<GridPoint>                          + getOutputs(): List<QuantumOutput>
 + delete(): void                                        + displayOutput(): void
 + isNear(GridPoint point): boolean

@@ -1,49 +1,59 @@
 package utils;
-import circuit.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GridManager {
-    private static final int GRID_SIZE = 40;
-    public static int width = 0;
-    public static int height = 0;
-    public static int[][] grid = new int[width][height];
+    public static final int GRID_SIZE = 40;
+    private static final int CANVAS_WIDTH = 800;
+    private static final int CANVAS_HEIGHT = 600;
+    private static final int GRID_WIDTH = CANVAS_WIDTH / GRID_SIZE;
+    private static final int GRID_HEIGHT = CANVAS_HEIGHT / GRID_SIZE;
 
-    public GridManager(int width, int height) {
-        this.width = width;
-        this.height = height;
-        this.grid = new int[width][height];
+    private static int[][] grid = new int[GRID_WIDTH][GRID_HEIGHT];
+    private static Map<String, GridPoint> gridPointsCache = new HashMap<>();  // Cache to store GridPoint instances
+
+    private static GridManager instance;
+
+    public GridManager() {
+        // Initialize grid if necessary
+    }
+
+    public static GridManager getInstance() {
+        if (instance == null) {
+            instance = new GridManager();
+        }
+        return instance;
+    }
+
+    public static GridPoint getGridPoint(int xInd, int yInd) {
+        String key = xInd + "," + yInd;
+        return gridPointsCache.computeIfAbsent(key, k -> GridPoint.createGridPoint(xInd, yInd));
+    }
+
+    public static GridPoint snapToGrid(double x, double y) {
+        int xInd = (int) Math.round(x / GRID_SIZE);
+        int yInd = (int) Math.round(y / GRID_SIZE);
+        return getGridPoint(xInd, yInd);
     }
 
     public static void placeComp(GridPoint pos, int code) {
-        if(isFree(pos)) grid[(int) pos.x()][(int) pos.y()] = code;
+        grid[pos.getXIndex()][pos.getYIndex()] = code;
     }
 
     public void removeComp(GridPoint pos) {
-        if(isFree(pos)) { return; }
-
-        grid[(int) pos.x()][(int) pos.y()] = 0;
+        grid[pos.getXIndex()][pos.getYIndex()] = 0;
     }
 
-    private static boolean isFree(GridPoint pos) {
-        return grid[(int) pos.x()][(int) pos.y()] == 0;
+    public boolean isFree(GridPoint pos) {
+        return grid[pos.getXIndex()][pos.getYIndex()] == 0;
     }
 
     public int getComp(GridPoint pos) {
-        if(isFree(pos)) { return 0; }
-
-        return grid[(int) pos.x()][(int) pos.y()];
+        return grid[pos.getXIndex()][pos.getYIndex()];
     }
 
     public int[][] getGrid() {
         return grid;
-    }
-
-    public static double snapToGrid(double value) {
-        return Math.round(value / GRID_SIZE) * GRID_SIZE;
-    }
-
-    public static GridPoint snapToGrid(double x, double y) {
-        double snappedX = snapToGrid(x);
-        double snappedY = snapToGrid(y);
-        return new GridPoint(snappedX, snappedY);
     }
 }
